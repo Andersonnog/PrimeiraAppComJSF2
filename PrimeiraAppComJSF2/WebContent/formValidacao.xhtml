@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Validação padrão do JSF 2</title>
+</h:head>
+<h:body>
+	<h:form id="formulario" prependId="false">
+		<h:messages />
+		<h:panelGrid columns="3">
+			<h:outputLabel value="Nome" for="nome"/>
+			<h:inputText value="#{controleValidacao.nome}"  id="nome" size="40"
+			required="true" requiredMessage="O nome deve ser informado!"
+			validatorMessage="O valor deve ter entre 3 e 40 caracteres">
+				<f:validateLength minimum="3" maximum="40"/>
+			</h:inputText>
+			<h:message  for="nome" style="color : red"/>
+			
+			<h:outputLabel value="Telefone" for="telefone"/>
+			<h:inputText value="#{controleValidacao.telefone}"  id="telefone" size="14"
+			required="true"
+			validatorMessage="Informe o telefone no formato (99)9999-9999">
+				<f:validateRegex pattern="\(\d{2}\)\d{4}\-\d{4}"/><!--pattern solicita expressão regular para a validação -->
+			</h:inputText>
+			<h:message  for="telefone"/>
+			
+			<h:outputLabel value="Email" for="email"/>
+			<h:inputText value="#{controleValidacao.email}"  id="email" size="14"
+			required="true"
+			validatorMessage="Informe um  email válido">
+				<f:validateRegex pattern="^[_A-Za-z0-9-]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</h:inputText>
+			<h:message  for="email"/>
+			
+			<h:outputLabel value="Idade" for="idade"/>
+			<h:inputText value="#{controleValidacao.idade}"  id="idade" size="3"
+			required="true"
+			validatorMessage="O intervalo permitido deverá ser entre 10 e 80 anos">
+				<f:validateLongRange minimum="10" maximum="80"/>
+			</h:inputText>
+			<h:message  for="idade"/>
+			
+			<h:outputLabel value="Nota" for="nota"/>
+			<h:inputText value="#{controleValidacao.nota}"  id="nota" size="4"
+			required="true"
+			validatorMessage="Valor de nota permitido é entre 0 e 10">
+				<f:validateDoubleRange minimum="0" maximum="10"/>
+			</h:inputText>
+			<h:message  for="nota"/>
+			
+			<h:commandButton action="#{controleValidacao.processoDados()}" value="Enviar" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

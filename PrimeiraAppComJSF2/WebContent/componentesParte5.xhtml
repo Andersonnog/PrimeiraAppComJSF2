@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"> 
+
+<h:head><title></title></h:head> 
+<h:body> 
+	<h:form id="formulario">
+		<h:inputHidden value="#{contoleEntrada.id}" id="id" /> <!-- campo oculto -->
+		<h:panelGrid columns="2">
+			<f:facet name="header">Dados da pessoa</f:facet>
+			<h:outputLabel value="Nome" for="nome" />
+			<h:inputText value="#{contoleEntrada.nome}" id="nome" size="50" maxlength="50"/>
+			<h:outputLabel value="Senha:" for="senha" />
+			<h:inputSecret value="#{contoleEntrada.senha}" redisplay="true"  id="senha" size="10" maxlength="10"/>
+			<h:outputLabel value="Observação:" for="obs"/>
+			<h:inputTextarea value="#{contoleEntrada.obs}" cols="30" rows="6" id="obs"/>
+			<h:outputLabel value="Grau instrução" for="grau" />
+			 <h:selectOneMenu value="#{contoleEntrada.grauInstrucao}" id="grau">
+				<f:selectItem itemLabel=" Selecione " noSelectionOption="true"/>
+				      <!-- Gerado de estaticamente 
+				<f:selectItem itemLabel="Ensino Fundamental" itemValue="Ensino Fundamental"/>
+				<f:selectItem itemLabel="Ensino Medio" itemValue="Ensino Medio"/>
+				<f:selectItem itemLabel="Ensino Superior" itemValue="Ensino Superior"/>	 -->	
+								
+				     <!--  Gerado dinamicamente  -->
+				<f:selectItems var="item" value="#{contoleEntrada.grausInstrucao}" 
+					itemValue="#{item}" itemLabel="#{item}"/>	
+			</h:selectOneMenu> 
+			
+			<h:outputLabel value="Tecnologias" for="tec" />
+			<h:selectManyCheckbox  value="#{contoleEntrada.selecionadas}">
+				<f:selectItems var="item" value="#{contoleEntrada.tecnologias}"
+				itemValue="#{item}" itemLabel="#{item}"/>
+			</h:selectManyCheckbox>      <!-- poderia usar tabem </h:selectManyListbox> -->			
+			
+			<!--     gerando usando radio
+			<h:selectOneRadio value="#{contoleEntrada.grauInstrucao}" id="grau" layout="lineDirection">
+				<f:selectItems var="item" value="#{contoleEntrada.grausInstrucao}" 
+					itemValue="#{item}" itemLabel="#{item}"/>
+			</h:selectOneRadio> -->
+			<!--  tem outras forma utilizando selectOneListbox ver na aula 09 (24min) -->
+			<h:column>
+				<div align="center">
+					<h:commandButton action="#{contoleEntrada.processa()}" value="Processar" />
+				</div>
+			</h:column>
+		</h:panelGrid>	
+	</h:form>
+	
+	<h:outputText value="#{contoleEntrada.saida}" escape="false"/>
+</h:body> 
+</html>
