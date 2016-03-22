@@ -2,8 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"> 
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:devmedia="http://java.sun.com/jsf/composite/devmedia"> 
+      
+	<devmedia:linkImagem biblioteca="images" imagem="home.png" acao="#{controlePrincipal.home()}"/>
 	<h:form>
 		<h:panelGrid columns="1">
 			<h:commandLink action="/index" value="Home" />

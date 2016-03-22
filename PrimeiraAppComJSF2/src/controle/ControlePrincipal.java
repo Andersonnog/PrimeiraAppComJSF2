@@ -13,6 +13,10 @@ public class ControlePrincipal implements Serializable{
 	
 	private String mensagem;
 	
+	public String home(){
+		return "/index";
+	}
+	
 	public ControlePrincipal(){
 		SimpleDateFormat sdf =
 				new SimpleDateFormat("dd/MM/yyyy HH:mm:ss:S");
