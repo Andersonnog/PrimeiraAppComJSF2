@@ -7,6 +7,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import controle.Pessoa;
+
 @ManagedBean(name="controleTabela")
 @SessionScoped
 public class ControleTabela implements Serializable {
